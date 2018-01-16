@@ -1,0 +1,4 @@
+volumes/content
+volumes/nbi
+.env
+.env.bak

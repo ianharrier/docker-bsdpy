@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+    bsdpy:
+        build:
+            context: ./images/bsdpy
+            args:
+                - BSDPY_VERSION=${BSDPY_VERSION}
+        image: ianharrier/netboot-bsdpy:${BSDPY_VERSION}
+        restart: unless-stopped
+        ports:
+            - 67:67/udp
+        environment:
+            - BSDPY_IFACE=eth0
+            - BSDPY_IP=${BSDPY_IP}
+            - BSDPY_NBI_URL=http://${BSDPY_IP}/nbi
+            - BSDPY_PROTO=http
+        volumes:
+            - ./volumes/nbi:/nbi:z
+    tftp:
+        build:
+            context: ./images/tftp
+        image: ianharrier/netboot-tftp:1.0.0
+        restart: unless-stopped
+        ports:
+            - 69:69/udp
+        volumes:
+            - ./volumes/nbi:/var/tftpboot/nbi:z
+    http:
+        build:
+            context: ./images/http
+        image: ianharrier/netboot-http:1.0.0
+        restart: unless-stopped
+        ports:
+            - 80:80
+        volumes:
+            - ./volumes/content:/var/www/localhost/htdocs/content:Z
+            - ./volumes/nbi:/var/www/localhost/htdocs/nbi:z
