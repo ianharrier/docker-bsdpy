@@ -13,7 +13,7 @@ echo "=== Updating environment file. ===========================================
 OLD_BSDPY_VERSION=$(grep ^BSDPY_VERSION= .env | cut -d = -f 2)
 NEW_BSDPY_VERSION=$(grep ^BSDPY_VERSION= .env.template | cut -d = -f 2)
 echo "[I] Upgrading BSDPy from '$OLD_BSDPY_VERSION' to '$NEW_BSDPY_VERSION'."
-sed -i.bak "s/^BSDPY_VERSION=.*/BSDPY_VERSION=$NEW_BSDPY_VERSION/g" .env
+sed -i.bak -e "s/^BSDPY_VERSION=.*/BSDPY_VERSION=$NEW_BSDPY_VERSION/g" .env
 
 echo "=== Deleting old images. ======================================================="
 IMAGE_BSDPY=$(docker images ianharrier/netboot-bsdpy -q)
