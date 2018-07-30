@@ -34,5 +34,5 @@ services:
         ports:
             - 80:80
         volumes:
-            - ./volumes/content:/var/www/localhost/htdocs/content:Z
+            - ./volumes/content:/var/www/localhost/htdocs/content:z
             - ./volumes/nbi:/var/www/localhost/htdocs/nbi:z
