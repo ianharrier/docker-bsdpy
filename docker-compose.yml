@@ -20,7 +20,7 @@ services:
     tftp:
         build:
             context: ./images/tftp
-        image: ianharrier/netboot-tftp:1.0.0
+        image: ianharrier/netboot-tftp:1.0.1
         restart: unless-stopped
         ports:
             - 69:69/udp
@@ -29,7 +29,7 @@ services:
     http:
         build:
             context: ./images/http
-        image: ianharrier/netboot-http:1.0.0
+        image: ianharrier/netboot-http:1.0.1
         restart: unless-stopped
         ports:
             - 80:80
